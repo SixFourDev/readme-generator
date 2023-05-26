@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -85,6 +86,53 @@ const questions = [
         message: 'Enter testing instructions:',
     },
 ];
+
+// Create a function to generate the answers for the README
+function generateREADME(answers) {
+    // Add the Title of the webpage
+    let readmeContent = `# ${answers.title}\n\n`;
+
+    // Add license badge after the title
+    readmeContent += `![License](https://img.shields.io/badge/License-${encodeURIComponent(answers.license)}-brightgreen)\n\n`;
+
+    // Add the description
+    readmeContent += `## Description\n\n${answers.description}\n\n`;
+
+    // Add the Table of Contents
+    readmeContent += `## Table of Contents\n\n`;
+    answers.tableOfContentsItems.forEach(item => {
+        readmeContent += `- [${item}](#${item.toLowerCase().replace(/\s+/g, '-')})\n`;
+    });
+    readmeContent += '\n';
+
+    // Add installation instructions
+    readmeContent += `## Installation\n\n${answers.installation}\n\n`;
+
+    // Add Usage instructions
+    readmeContent += `## Usage\n\n${answers.usage}\n\n`;
+
+    // Add screenshots
+    if (Array.isArray(answers.screenshots) && answers.screenshots.length > 0) {
+        readmeContent += `## Screenshots\n\n`;
+        answers.screenshots.forEach(screenshot => {
+            readmeContent += `![Screenshot](${screenshot})\n\n`;
+        });
+    }
+
+    // Add License used
+    readmeContent += `## License\n\n${answers.license}\n\n`;
+
+    // Add Features of website
+    readmeContent += `## Features\n\n${answers.features}\n\n`;
+
+    // Add how to contribute
+    readmeContent += `## Contribution\n\n${answers.contribution}\n\n`;
+
+    // Add any tests for the website
+    readmeContent += `## Tests\n\n${answers.tests}\n\n`;
+
+    return readmeContent;
+}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
