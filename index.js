@@ -135,7 +135,15 @@ function generateREADME(answers) {
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => { 
+        if (err) { 
+            console.error(err); 
+        } else { 
+            console.log(`File "${fileName}" has been generated successfully.`); 
+        } 
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {}
