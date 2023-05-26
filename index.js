@@ -48,9 +48,21 @@ const questions = [
         when: (answers) => answers.addScreenshots === true,
     },
     {
-        type: 'input',
+        type: 'list',
         name: 'license',
-        message: 'Enter the license',
+        message: 'Choose a license for your project:',
+        choices: [
+            'MIT License',
+            'Apache License 2.0',
+            'GNU General Public License (GPL)',
+            'Other',
+        ]
+    },
+    {
+        type: 'input',
+        name: 'customLicense',
+        message: 'Enter your custom license:',
+        when: (answers) => answers.license === 'Other',
     },
     {
         type: 'input',
