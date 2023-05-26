@@ -19,6 +19,13 @@ const questions = [
         default: false,
     },
     {
+        type: 'checkbox',
+        name: 'tableOfContentsItems',
+        message: 'Select the items to include in the Table of Contents:',
+        choices: ['Installation', 'Usage', 'Credits', 'License', 'Badges', 'Features', 'How to Contribute', 'Tests'],
+        when: (answers) => answers.tableOfContents === true,
+    },
+    {
         type: 'input',
         name: 'installation',
         message: 'Enter installation instructions:'
@@ -33,6 +40,12 @@ const questions = [
         name: 'addScreenshots',
         message: 'Do you want to add screenshots?',
         default: false,
+    },
+    {
+        type: 'input',
+        name: 'screenshots',
+        message: 'Enter screenshot URLs here',
+        when: (answers) => answers.addScreenshots === true,
     },
     {
         type: 'input',
