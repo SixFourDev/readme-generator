@@ -100,6 +100,7 @@ function generateREADME(answers) {
 
     // Add the Table of Contents
     readmeContent += `## Table of Contents\n\n`;
+    // Use forEach to loop through all TOC
     answers.tableOfContentsItems.forEach(item => {
         readmeContent += `- [${item}](#${item.toLowerCase().replace(/\s+/g, '-')})\n`;
     });
@@ -146,7 +147,17 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer
+        .prompt(questions)
+        .then(answers => {
+            const readmeContent = generateREADME(answers);
+            writeToFile('README.md', readmeContent);
+        })
+        .catch(error => {
+            console.error(error);
+        })
+}
 
 // Function call to initialize app
 init();
