@@ -85,6 +85,11 @@ const questions = [
         name: 'tests',
         message: 'Enter testing instructions:',
     },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter your Github username:',
+    }
 ];
 
 // Create a function to generate the answers for the README
@@ -132,17 +137,21 @@ function generateREADME(answers) {
     // Add any tests for the website
     readmeContent += `## Tests\n\n${answers.tests}\n\n`;
 
+    // Add Questions section
+    readmeContent += `## Questions\n\n`;
+    readmeContent += `For any questions or inquiries, feel free to reach out to me on [GitHub](https://github.com/${answers.github}).\n\n`;
+
     return readmeContent;
 }
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => { 
-        if (err) { 
-            console.error(err); 
-        } else { 
-            console.log(`File "${fileName}" has been generated successfully.`); 
-        } 
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(`File "${fileName}" has been generated successfully.`);
+        }
     });
 }
 
