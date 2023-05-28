@@ -89,7 +89,12 @@ const questions = [
         type: 'input',
         name: 'github',
         message: 'Enter your Github username:',
-    }
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address:',
+    },
 ];
 
 // Create a function to generate the answers for the README
@@ -139,7 +144,9 @@ function generateREADME(answers) {
 
     // Add Questions section
     readmeContent += `## Questions\n\n`;
-    readmeContent += `For any questions or inquiries, feel free to reach out to me on [GitHub](https://github.com/${answers.github}).\n\n`;
+    readmeContent += `For any questions or inquiries, feel free to reach out to me:\n\n`;
+    readmeContent += `- GitHub: [${answers.github}](https://github.com/${answers.github})\n`;
+    readmeContent += `- Email: ${answers.email}\n\n`;
 
     return readmeContent;
 }
