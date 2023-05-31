@@ -110,9 +110,10 @@ function generateREADME(answers) {
 
     // Add the Table of Contents
     readmeContent += `## Table of Contents\n\n`;
-    // Use forEach to loop through all TOC
+    // Use forEach to loop through TOC
     answers.tableOfContentsItems.forEach(item => {
-        readmeContent += `- [${item}](#${item.toLowerCase().replace(/\s+/g, '-')})\n`;
+        const anchor = item.toLowerCase().replace(/\s+/g, '-');
+        readmeContent += `- [${item}](#${anchor})\n`;
     });
     readmeContent += '\n';
 
